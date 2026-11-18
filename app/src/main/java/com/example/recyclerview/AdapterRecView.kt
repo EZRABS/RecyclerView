@@ -11,6 +11,7 @@ import coil.load
 class AdapterRecView(private val listWayang: ArrayList<DcWayang>) :
 
     RecyclerView.Adapter<AdapterRecView.ListViewHolder>() {
+    private lateinit var onItemClickCallback: OnItemClickCallback
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding = ItemRecyclerBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -41,13 +42,32 @@ class AdapterRecView(private val listWayang: ArrayList<DcWayang>) :
                 Toast.LENGTH_SHORT
             ).show()
         }
+
+        holder.binding.gambarWayang.setOnClickListener {
+            Toast.makeText(
+                holder.itemView.context,
+                "Gambar ${wayang.nama} diklik",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            if (::onItemClickCallback.isInitialized) {
+                onItemClickCallback.onItemClicked(wayang)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
         return listWayang.size
     }
 
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
     class ListViewHolder(val binding: ItemRecyclerBinding) :
         RecyclerView.ViewHolder(binding.root)
+}
+
+interface OnItemClickCallback {
+    fun onItemClicked(data: DcWayang)
 }
 
