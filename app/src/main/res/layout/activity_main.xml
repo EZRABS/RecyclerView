@@ -17,8 +17,50 @@
         android:textOff="Grid View"
         android:checked="false" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <EditText
+        android:id="@+id/etNama"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rvWayang" />
+        android:layout_height="wrap_content"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:hint="Nama"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etKarakter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Karakter (Pandawa/Punakawan/Kurawa)"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etDeskripsi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Deskripsi"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etFoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="URL foto (boleh kosong)"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:inputType="textUri" />
+
+    <Button
+        android:id="@+id/btnTambah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tambah" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvWayang"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

@@ -40,6 +40,10 @@ class MainActivity : AppCompatActivity() {
         tambahData()
         tampilkanData()
 
+        binding.btnTambah.setOnClickListener {
+            tambahDataBaru()
+        }
+
         binding.btnToggleLayout.setOnCheckedChangeListener { _, isChecked ->
             tampilkanData()
         }
@@ -50,6 +54,29 @@ class MainActivity : AppCompatActivity() {
         _karakter = resources.getStringArray(R.array.karakterUtamaWayang)
         _deskripsi = resources.getStringArray(R.array.deskripsiWayang)
         _gambar = resources.getStringArray(R.array.gambarWayang)
+    }
+
+    private fun tambahDataBaru() {
+        val nama = binding.etNama.text.toString().trim()
+        val karakter = binding.etKarakter.text.toString().trim()
+        val deskripsi = binding.etDeskripsi.text.toString().trim()
+        val foto = binding.etFoto.text.toString().trim()
+
+        if (nama.isEmpty() || karakter.isEmpty() || deskripsi.isEmpty()) {
+            Toast.makeText(this, "Nama, karakter, dan deskripsi wajib diisi", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        _arWayang.add(DcWayang(foto, nama, karakter, deskripsi))
+        binding.rvWayang.adapter?.notifyItemInserted(_arWayang.size - 1)
+        binding.rvWayang.scrollToPosition(_arWayang.size - 1)
+
+        binding.etNama.text.clear()
+        binding.etKarakter.text.clear()
+        binding.etDeskripsi.text.clear()
+        binding.etFoto.text.clear()
+
+        Toast.makeText(this, "$nama berhasil ditambahkan", Toast.LENGTH_SHORT).show()
     }
 
     private fun tambahData() {
